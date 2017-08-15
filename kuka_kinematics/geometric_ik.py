@@ -76,7 +76,7 @@ def select_nearest(current_state, solutions):
   distances = []
   for solution in solutions:
     distance = sum(circle_distance(
-      solution[x], current_state[x]) for x in current_state)
+      solution[x], current_state[x]) for x in solution)
     distances.append(distance)
 
   index = np.argmin(distances)

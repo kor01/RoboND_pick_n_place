@@ -30,34 +30,44 @@
 
 #### DH Parameter and DH Frame Inference:
 
- 1. I have implemented a generic package automatically infer the DH 
+ 1. I have implemented a generic package automatically infer the DH
  frame assignment and DH parameter directly from URDF files
- 
+
  2. jupyter notebook of DH parameters and DH frames inference from URDF file
- 
+
 #### Forward Kinematics:
 
  1. I also have implemented a generic forward kinematics package
- 
+
  2. using the analysis from the first package and build automatic forward kinematics
- 
+
  3. the package can infer both the DH frames of each link and the URDF frames of each link
- 
- 4. the package provides convenient API to aid inverse kinematics implementation 
+
+ 4. the package provides convenient API to aid inverse kinematics implementation
 
  5. the package uses sympy autowrap to speed up inference computation
- 
+
  6. the package automatically check joint limit (throw exception if unreachable)
+
+
+
+
+    Here's | A | Snappy | Table
+    --- | --- | --- | ---
+    1 | `highlight` | **bold** | 7.41
+    2 | a | b | c
+    3 | *italic* | text | 403
+    4 | 2 | 3 | abcd
 
 #### Inverse Kinematics:
 
  1. inverse kinematics implementation is not generic and is specific to KR210 arm
- 
- 2. the geometric method: 
- 
+
+ 2. the geometric method:
+
      a. convert the EEF frame in query into target DHFrame of gripper link
-     
-     b. use the EEF frame Z axis and wrist center to 
+
+     b. use the EEF frame Z axis and wrist center to
 
 Here is an example of how to include an image in your writeup.
 
@@ -65,22 +75,17 @@ Here is an example of how to include an image in your writeup.
 
 #### 2. Using the DH parameter table you derived earlier, create individual transformation matrices about each joint. In addition, also generate a generalized homogeneous transform between base_link and gripper_link using only end-effector(gripper) pose.
 
-Here's | A | Snappy | Table
---- | --- | --- | ---
-1 | `highlight` | **bold** | 7.41
-2 | a | b | c
-3 | *italic* | text | 403
-4 | 2 | 3 | abcd
+
 
 #### 3. Decouple Inverse Kinematics problem into Inverse Position Kinematics and inverse Orientation Kinematics; doing so derive the equations to calculate all individual joint angles.
 
-And here's another image! 
+And here's another image!
 
 ![alt text][image2]
 
 ### Project Implementation
 
-#### 1. Fill in the `IK_server.py` file with properly commented python code for calculating Inverse Kinematics based on previously performed Kinematic Analysis. Your code must guide the robot to successfully complete 8/10 pick and place cycles. Briefly discuss the code you implemented and your results. 
+#### 1. Fill in the `IK_server.py` file with properly commented python code for calculating Inverse Kinematics based on previously performed Kinematic Analysis. Your code must guide the robot to successfully complete 8/10 pick and place cycles. Briefly discuss the code you implemented and your results.
 
 
 Here I'll talk about the code, what techniques I used, what worked and why, where the implementation might fail and how I might improve it if I were going to pursue this project further.  
@@ -88,5 +93,3 @@ Here I'll talk about the code, what techniques I used, what worked and why, wher
 
 And just for fun, another example image:
 ![alt text][image3]
-
-
