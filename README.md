@@ -8,13 +8,15 @@
 2. Geometric inverse kinematics for kr210 kuka arm
 ---
 
-**Run the project:**  
-0. install project dependency: pip install gflags
-1. Set up your ROS Workspace.
-2. Download or clone the [project repository](https://github.com/udacity/RoboND-Kinematics-Project) into the ***src*** directory of your ROS Workspace.  
-3. copy kuka_kinematics, manipulator_graph, and ks_runner.sh to kuka_arm/script directory
-4. roscd kuka_arm/script; sh target_spawn.py to start environment
-5. sh ks_runner.sh to start kinematics server
+### Run the project:
+
+
+1. install project dependency: pip install gflags
+2. Set up your ROS Workspace.
+3. Download or clone the [project repository](https://github.com/udacity/RoboND-Kinematics-Project) into the ***src*** directory of your ROS Workspace.  
+4. copy kuka_kinematics, manipulator_graph, and ks_runner.sh to kuka_arm/script directory
+5. roscd kuka_arm/script; sh target_spawn.py to start environment
+6. sh ks_runner.sh to start kinematics server
 
 
 [//]: # (Image References)
@@ -25,7 +27,10 @@
 [gazebo_grip]: ./misc_images/gazebo_grip.png
 [ks_log]: ./misc_images/ks_log.png
 
-## [Rubric](https://review.udacity.com/#!/rubrics/972/view) Points
+---
+
+### [Rubric](https://review.udacity.com/#!/rubrics/972/view) Points
+
 
 ### Kinematic Analysis
 
