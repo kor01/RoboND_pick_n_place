@@ -1,5 +1,7 @@
+from __future__ import absolute_import
+from __future__ import print_function
 from collections import defaultdict
-from serial_subgraph import SerialSubGraph
+from autofk.chain import Chain
 
 
 def joint_topology(joints):
@@ -22,19 +24,17 @@ def joint_topology(joints):
   return joint_parents, joint_children
 
 
-class GraphNode(object):
+class Node(object):
 
-  def __init__(self, graph,
-               parent, children):
-
-    assert isinstance(graph, SerialSubGraph)
-    self._graph = graph
+  def __init__(self, chain, parent, children):
+    assert isinstance(chain, Chain)
+    self._chain = chain
     self._parent = parent
     self._children = children
 
   @property
-  def graph(self):
-    return self._graph
+  def chain(self):
+    return self._chain
 
   @property
   def parent(self):
@@ -120,9 +120,9 @@ class KinematicsDag(object):
     dag = []
     for i, s in enumerate(serials):
       serial = map(lambda x: joint_map[x], s)
-      graph = SerialSubGraph(serial)
+      chain = Chain(serial)
       parent, chil = parents[i], children[i]
-      node = GraphNode(graph, parent, chil)
+      node = Node(chain, parent, chil)
       dag.append(node)
     self._dag = tuple(dag)
 
@@ -135,4 +135,3 @@ class KinematicsDag(object):
 
   def __getitem__(self, i):
     return self._dag[i]
-

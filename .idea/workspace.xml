@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/kuka_kinematics/geometric_ik.py" line="111" mnemonic="0" />
+    <bookmark url="file://$PROJECT_DIR$/kuka_kinematics/geometric_ik.py" line="113" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e9de8ee-e072-4cca-8031-0253112523b1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IK_server.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/dh_frame_assignment.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/dh_parameter_inference.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/formal_kuka_ik.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/formal_urdf.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/intersection_solve.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/inverse_kinematics.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/kinematics_dag.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/line_geometry.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/manipulator_graph_parse.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/sp_compile.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/xarco_parse.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/zyz_eluer.ipynb" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autofk/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/writeup.md" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kuka_kinematics/dh_boradcaster.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manipulator_graph/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manipulator_graph/definitions.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manipulator_graph/parameter_inference.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/manipulator_graph/forward_kinematics.py" afterPath="$PROJECT_DIR$/autofk/link.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/manipulator_graph/frame_inference.py" afterPath="$PROJECT_DIR$/autofk/dh.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/manipulator_graph/kinematics_dag.py" afterPath="$PROJECT_DIR$/autofk/dag.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/manipulator_graph/line_geometry.py" afterPath="$PROJECT_DIR$/autofk/geometry.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/manipulator_graph/serial_subgraph.py" afterPath="$PROJECT_DIR$/autofk/chain.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/manipulator_graph/urdf_parser.py" afterPath="$PROJECT_DIR$/autofk/parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kuka_kinematics/geometric_ik.py" afterPath="$PROJECT_DIR$/kuka_kinematics/geometric_ik.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kuka_kinematics/kuka_model.py" afterPath="$PROJECT_DIR$/kuka_kinematics/kuka_model.py" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,27 +44,53 @@
     <favorites_list name="pick_n_place" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.52075225">
+    <splitter split-orientation="horizontal" split-proportion="0.5743287">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="kuka_model.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/kuka_kinematics/kuka_model.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="440">
-                  <caret line="88" column="0" lean-forward="true" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+                <state relative-caret-position="904">
+                  <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
                   <folding>
-                    <element signature="e#0#10#0" expanded="true" />
+                    <element signature="e#0#38#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/manipulator_graph/__init__.py">
+          <file leaf-file-name="dag.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/autofk/dag.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="40">
-                  <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="620">
+                  <caret line="34" column="11" lean-forward="false" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+                  <folding>
+                    <element signature="e#0#38#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="geometry.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/autofk/geometry.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="157">
+                  <caret line="45" column="15" lean-forward="false" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
+                  <folding>
+                    <element signature="e#0#38#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/autofk/parser.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="982">
+                  <caret line="143" column="22" lean-forward="true" selection-start-line="143" selection-start-column="22" selection-end-line="143" selection-end-column="22" />
+                  <folding>
+                    <element signature="e#0#38#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -71,41 +98,59 @@
           <file leaf-file-name="geometric_ik.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/kuka_kinematics/geometric_ik.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="862">
-                  <caret line="232" column="33" lean-forward="false" selection-start-line="232" selection-start-column="33" selection-end-line="232" selection-end-column="33" />
+                <state relative-caret-position="360">
+                  <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
                   <folding>
-                    <element signature="e#0#11#0" expanded="true" />
+                    <element signature="e#0#38#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="urdf_parser.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/manipulator_graph/urdf_parser.py">
+          <file leaf-file-name="dh.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/autofk/dh.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1720">
-                  <caret line="90" column="10" lean-forward="false" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
-                  <folding />
+                <state relative-caret-position="-718">
+                  <caret line="104" column="26" lean-forward="true" selection-start-line="104" selection-start-column="26" selection-end-line="104" selection-end-column="26" />
+                  <folding>
+                    <element signature="e#0#38#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="frame_inference.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/manipulator_graph/frame_inference.py">
+          <file leaf-file-name="chain.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/autofk/chain.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="462">
-                  <caret line="26" column="11" lean-forward="true" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-                  <folding />
+                <state relative-caret-position="540">
+                  <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="serial_subgraph.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/manipulator_graph/serial_subgraph.py">
+          <file leaf-file-name="link.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/autofk/link.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="420">
-                  <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="1060">
+                  <caret line="53" column="28" lean-forward="true" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
+                  <folding>
+                    <element signature="e#0#38#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="__main__.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/kuka_kinematics/__main__.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="540">
+                  <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#12#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -120,62 +165,18 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="IK_server.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/IK_server.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="780">
-                  <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="forward_kinematics.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/manipulator_graph/forward_kinematics.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="__main__.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/kuka_kinematics/__main__.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="320">
-                  <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-                  <folding>
-                    <element signature="e#0#12#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="IK_server.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/IK_server.py">
+          <file leaf-file-name="dh.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/autofk/dh.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="800">
-                  <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+                <state relative-caret-position="100">
+                  <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
                   <folding>
-                    <element signature="e#0#10#0" expanded="true" />
+                    <element signature="e#0#38#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="kinematics_dag.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/manipulator_graph/kinematics_dag.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="702">
-                  <caret line="125" column="22" lean-forward="true" selection-start-line="125" selection-start-column="22" selection-end-line="125" selection-end-column="22" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -204,7 +205,17 @@
       <find>euler</find>
       <find>forwa</find>
       <find>save_joint_state</find>
+      <find>fi.</find>
+      <find>sort</find>
+      <find>lg.</find>
+      <find>inner_prod</find>
+      <find>DHFer</find>
+      <find>c</find>
     </findStrings>
+    <replaceStrings>
+      <replace>dh.</replace>
+      <replace>geo.</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -212,7 +223,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/forward_kinematics.py" />
         <option value="$PROJECT_DIR$/forward_kinematics/__init__.py" />
         <option value="$PROJECT_DIR$/urdf_graph/_xml_parser.py" />
         <option value="$PROJECT_DIR$/kuka_parser/_joint_parser.py" />
@@ -233,7 +243,6 @@
         <option value="$PROJECT_DIR$/notebooks/dh_parameter_inference.ipynb" />
         <option value="$USER_HOME$/notebooks/pick_n_place/dh_frame_assignment.ipynb" />
         <option value="$PROJECT_DIR$/manipulator_graph/line_geometry.py" />
-        <option value="$PROJECT_DIR$/manipulator_graph/parameter_inference.py" />
         <option value="$PROJECT_DIR$/manipulator_graph/_urdf_parser.py" />
         <option value="$PROJECT_DIR$/kinematics_server/dh_boradcaster.py" />
         <option value="$PROJECT_DIR$/forward_kinematics/forward_kinematics.py" />
@@ -247,13 +256,24 @@
         <option value="$PROJECT_DIR$/manipulator_graph/definitions.py" />
         <option value="$PROJECT_DIR$/manipulator_graph/forward_kinematics.py" />
         <option value="$PROJECT_DIR$/manipulator_graph/urdf_parser.py" />
-        <option value="$PROJECT_DIR$/manipulator_graph/serial_subgraph.py" />
         <option value="$PROJECT_DIR$/ks_runner.sh" />
-        <option value="$PROJECT_DIR$/kuka_kinematics/kuka_model.py" />
         <option value="$PROJECT_DIR$/kuka_kinematics/__main__.py" />
         <option value="$PROJECT_DIR$/writeup_template.md" />
-        <option value="$PROJECT_DIR$/kuka_kinematics/geometric_ik.py" />
         <option value="$PROJECT_DIR$/IK_server.py" />
+        <option value="$PROJECT_DIR$/manipulator_graph/serial_subgraph.py" />
+        <option value="$PROJECT_DIR$/manipulator_graph/parameter_inference.py" />
+        <option value="$PROJECT_DIR$/autofk/parameter_inference.py" />
+        <option value="$PROJECT_DIR$/autofk/__init__.py" />
+        <option value="$PROJECT_DIR$/autofk/link.py" />
+        <option value="$PROJECT_DIR$/autofk/geometry.py" />
+        <option value="$PROJECT_DIR$/autofk/dh.py" />
+        <option value="$PROJECT_DIR$/autofk/dag.py" />
+        <option value="$PROJECT_DIR$/kuka_kinematics/kuka_model.py" />
+        <option value="$PROJECT_DIR$/autofk/struct.py" />
+        <option value="$PROJECT_DIR$/autofk/parser.py" />
+        <option value="$PROJECT_DIR$/kuka_kinematics/geometric_ik.py" />
+        <option value="$PROJECT_DIR$/kuka_kinematics/dh_boradcaster.py" />
+        <option value="$PROJECT_DIR$/autofk/chain.py" />
       </list>
     </option>
   </component>
@@ -264,10 +284,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="382" />
-    <option name="width" value="1855" />
-    <option name="height" value="1084" />
+    <option name="x" value="64" />
+    <option name="y" value="375" />
+    <option name="width" value="1857" />
+    <option name="height" value="1092" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -308,7 +328,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="manipulator_graph" />
+              <option name="myItemId" value="kuka_kinematics" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -322,7 +342,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="kuka_kinematics" />
+              <option name="myItemId" value="autofk" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -542,20 +562,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="382" width="1855" height="1084" extended-state="6" />
+    <frame x="64" y="375" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1509121" sideWeight="0.49583334" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32291666" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15754561" sideWeight="0.49583334" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18131565" sideWeight="0.50416666" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -564,7 +585,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
@@ -582,21 +602,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/forward_kinematics/__init__.py" />
-    <entry file="file://$USER_HOME$/.app/python2.7/lib/python2.7/site-packages/Cython/Includes/numpy/__init__.pxd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="2" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.app/python2.7/lib/python2.7/site-packages/numpy/linalg/linalg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="2226" column="11" lean-forward="true" selection-start-line="2226" selection-start-column="11" selection-end-line="2226" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/notebooks/start_nb.sh" />
     <entry file="file://$PROJECT_DIR$/notebooks/.ipynb_checkpoints/manipulator_graph_parse-checkpoint.ipynb" />
     <entry file="file://$PROJECT_DIR$/notebooks/intersection_solve.ipynb" />
@@ -663,20 +668,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/forward_kinematics/forward_kinematics.py" />
-    <entry file="file://$USER_HOME$/.PyCharm2017.1/system/python_stubs/-1993348716/__builtin__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="215" column="45" lean-forward="false" selection-start-line="215" selection-start-column="45" selection-end-line="215" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2017.1/system/python_stubs/-1993348716/numpy/core/multiarray.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="1400" column="4" lean-forward="true" selection-start-line="1400" selection-start-column="4" selection-end-line="1400" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.app/python2.7/lib/python2.7/site-packages/numpy/core/numeric.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
@@ -722,70 +713,99 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kuka_kinematics/dh_boradcaster.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/writeup_template.md" />
-    <entry file="file://$PROJECT_DIR$/manipulator_graph/line_geometry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="13" column="5" lean-forward="false" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manipulator_graph/definitions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ks_runner.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md" />
-    <entry file="file://$PROJECT_DIR$/manipulator_graph/parameter_inference.py">
+    <entry file="file://$PROJECT_DIR$/IK_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="740">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="800">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autofk/parameter_inference.py" />
+    <entry file="file://$USER_HOME$/.app/python2.7/lib/python2.7/__future__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="115" column="53" lean-forward="true" selection-start-line="115" selection-start-column="53" selection-end-line="115" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/writeup.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="580">
-            <caret line="29" column="3" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+          <first_editor relative-caret-position="421">
+            <caret line="127" column="14" lean-forward="true" selection-start-line="127" selection-start-column="14" selection-end-line="127" selection-end-column="14" />
+            <folding />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manipulator_graph/urdf_parser.py">
+    <entry file="file://$USER_HOME$/.PyCharm2017.1/system/python_stubs/-1993348716/numpy/core/umath.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1720">
-          <caret line="90" column="10" lean-forward="false" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
+        <state relative-caret-position="430">
+          <caret line="4301" column="51" lean-forward="true" selection-start-line="4301" selection-start-column="51" selection-end-line="4301" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IK_server.py">
+    <entry file="file://$USER_HOME$/.PyCharm2017.1/system/python_stubs/-1993348716/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="4346" column="32" lean-forward="true" selection-start-line="4346" selection-start-column="32" selection-end-line="4346" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2017.1/system/python_stubs/-1993348716/numpy/core/multiarray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="125" column="27" lean-forward="true" selection-start-line="125" selection-start-column="27" selection-end-line="125" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autofk/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/numpy/core/numeric.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="2462" column="4" lean-forward="false" selection-start-line="2462" selection-start-column="4" selection-end-line="2462" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autofk/dag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="34" column="11" lean-forward="false" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autofk/struct.py" />
+    <entry file="file://$PROJECT_DIR$/kuka_kinematics/dh_boradcaster.py" />
+    <entry file="file://$PROJECT_DIR$/kuka_kinematics/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -798,73 +818,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kuka_kinematics/geometric_ik.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="862">
-          <caret line="232" column="33" lean-forward="false" selection-start-line="232" selection-start-column="33" selection-end-line="232" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manipulator_graph/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kuka_kinematics/__main__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manipulator_graph/kinematics_dag.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="125" column="22" lean-forward="true" selection-start-line="125" selection-start-column="22" selection-end-line="125" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manipulator_graph/forward_kinematics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manipulator_graph/serial_subgraph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kuka_kinematics/kuka_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="88" column="0" lean-forward="true" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+        <state relative-caret-position="904">
+          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manipulator_graph/frame_inference.py">
+    <entry file="file://$PROJECT_DIR$/kuka_kinematics/geometric_ik.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="26" column="11" lean-forward="true" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-          <folding />
+        <state relative-caret-position="360">
+          <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autofk/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="982">
+          <caret line="143" column="22" lean-forward="true" selection-start-line="143" selection-start-column="22" selection-end-line="143" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autofk/geometry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="45" column="15" lean-forward="false" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autofk/dh.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-718">
+          <caret line="104" column="26" lean-forward="true" selection-start-line="104" selection-start-column="26" selection-end-line="104" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autofk/chain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autofk/link.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1060">
+          <caret line="53" column="28" lean-forward="true" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

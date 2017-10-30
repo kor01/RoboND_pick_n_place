@@ -1,44 +1,12 @@
 import tf
 import numpy as np
 import sympy as sp
-from manipulator_graph import frame_inference as fi
-from manipulator_graph import parameter_inference as pi
-from manipulator_graph import line_geometry as lg
-from manipulator_graph import forward_kinematics as fk
+from autofk import dh
+from autofk import geometry as ge
+from autofk import link as fk
 
 
-def find_connected_component(
-    parent_map, child_map, j):
-  node = j
-  ret = [node]
-  while True:
-    key = node.parent.name
-    if key not in child_map:
-      break
-    node = child_map[key]
-    ret.insert(0, node)
-
-  node = j
-  while True:
-    key = node.child.name
-    if key not in parent_map:
-      break
-    node = parent_map[key]
-    ret.append(node)
-  return ret
-
-
-def sort_joints(joints):
-  child_map = {}
-  parent_map = {}
-  for j in joints:
-    parent_map[j.parent.name] = j
-    child_map[j.child.name] = j
-  return find_connected_component(
-    parent_map, child_map, joints[0])
-
-
-def homogenous_transform(rpy, origin, to_numeric=True):
+def rpy_to_homogenous(rpy, origin, to_numeric=True):
   x_rot = sp.rot_axis1(-rpy[0])
   y_rot = sp.rot_axis2(-rpy[1])
   z_rot = sp.rot_axis3(-rpy[2])
@@ -52,11 +20,11 @@ def homogenous_transform(rpy, origin, to_numeric=True):
   return rot
 
 
-def inference_frames(js):
+def infer_absolute_frames(js):
   frame = np.eye(4)
   ret = []
   for j in js:
-    frame = np.matmul(frame, homogenous_transform(
+    frame = np.matmul(frame, rpy_to_homogenous(
       j.orientation, j.position))
     ret.append(frame)
   return ret
@@ -66,7 +34,7 @@ def absolute_axis(axes, frames):
   assert len(axes) == len(frames)
   ret = []
   for a, f in zip(axes, frames):
-    line = lg.Line(k=np.matmul(f[:3, :3], a), p=f[:3, -1])
+    line = ge.Line(k=np.matmul(f[:3, :3], a), p=f[:3, -1])
     ret.append(line)
   return ret
 
@@ -97,16 +65,16 @@ def construct_dh_links(joints, abs_frames):
   axis = map(lambda x: joints[x].axis, movables)
   movable_frames = map(lambda x: abs_frames[x], movables)
   abs_axis = absolute_axis(axis, movable_frames)
-  abs_dh_frames = fi.assign_dh_frames(abs_axis)
-  dh_parameters = pi.inference_dh_parameters(abs_dh_frames)
-  abs_dh_frames = map(fi.dh_frame_to_homogenous, abs_dh_frames)
+  abs_dh_frames = dh.assign_dh_frames(abs_axis)
+  dh_parameters = dh.infer_dh_parameters(abs_dh_frames)
+  abs_dh_frames = map(dh.dh_frame_to_homogenous, abs_dh_frames)
   rel_frames = relative_frames(
     movable_frames, abs_dh_frames[1:])
   links = []
-  for i, dh, rel_frame in \
+  for i, param, rel_frame in \
       zip(movables, dh_parameters, rel_frames):
     joint = joints[i]
-    link = fk.DHLink(i, dh, joint.type == 'revolute',
+    link = fk.DHLink(i, param, joint.type == 'revolute',
                      joint.child.name, joint.name,
                      rel_frame, joint.limits)
     links.append(link)
@@ -145,9 +113,9 @@ IDENTITY = np.eye(4)
 IDENTITY.flags.writeable = False
 
 
-class SerialSubGraph(object):
+class Chain(object):
   def __init__(self, joints):
-    self._abs_frames = inference_frames(joints)
+    self._abs_frames = infer_absolute_frames(joints)
     self._dh_base, abs_dh_frames, \
      self._dh_links, self._dh_parameter, \
      self._dh_frames = \

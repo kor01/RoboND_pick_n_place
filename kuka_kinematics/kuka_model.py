@@ -1,3 +1,7 @@
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import generators
+
 import sys
 import gflags
 import rospy
@@ -5,10 +9,10 @@ import tf
 import numpy as np
 import sympy as sp
 from sensor_msgs.msg import JointState
-from manipulator_graph import URDFParser
-from manipulator_graph.kinematics_dag import KinematicsDag
-from manipulator_graph import line_geometry as lg
-from manipulator_graph.serial_subgraph import homogenous_transform
+from autofk.parser import URDFParser
+from autofk.dag import KinematicsDag
+from autofk import geometry as lg
+from autofk.chain import rpy_to_homogenous
 from sympy.utilities.autowrap import autowrap
 from kuka_kinematics.geometric_ik import KukaGeometricIK
 from trajectory_msgs.msg import JointTrajectoryPoint
@@ -22,7 +26,7 @@ FLAGS = gflags.FLAGS
 def compile_rpy_to_homogenous():
   rpy = sp.symbols('roll, pitch, yaw')
   xyz = sp.symbols('x, y, z')
-  hm = homogenous_transform(rpy, xyz, to_numeric=False)
+  hm = rpy_to_homogenous(rpy, xyz, to_numeric=False)
   return autowrap(hm, args=rpy + xyz)
 
 
@@ -71,7 +75,7 @@ def relative_frames(frames, dh_frames):
 
 def to_joint_list(states):
   ret = []
-  for i in xrange(1, 7):
+  for i in range(1, 7):
     key = 'joint_{}'.format(i)
     ret.append(states[key])
   return ret
@@ -90,7 +94,7 @@ class KukaModel(object):
     self._joint_states = create_zero_states()
     self._dag = KinematicsDag(self._parser.joints)
     # Kuka major manipulator happens to be the first subgraph in DAG
-    self._graph = self._dag[0].graph
+    self._graph = self._dag[0].chain
     self._rpy_to_hm = compile_rpy_to_homogenous()
     self._ik = KukaGeometricIK(self._dag)
     base_name, base_mat = self._graph.dh_base_link
@@ -156,13 +160,13 @@ class KukaModel(object):
   def _handle_ik(self, request):
     iter_num = len(request.poses)
     if iter_num < 1:
-      print >> sys.stderr, 'No Valid pose received'
+      print('No Valid pose received', file=sys.stderr)
       return -1
 
     # states = self.current_state
     states = self.current_state
     ret = []
-    for t in xrange(iter_num):
+    for t in range(iter_num):
       pos = request.poses[t].position
       quat = request.poses[t].orientation
       rpy = tf.transformations.euler_from_quaternion(
@@ -181,5 +185,5 @@ class KukaModel(object):
   def ik_server(self):
     s = rospy.Service(
       'calculate_ik', CalculateIK, self._handle_ik)
-    print 'ik server started'
+    print('ik server started')
     return s

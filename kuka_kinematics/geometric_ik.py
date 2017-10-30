@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import time
 import enum
 import numpy as np
@@ -80,8 +82,8 @@ def select_nearest(current_state, solutions):
     distances.append(distance)
 
   index = np.argmin(distances)
-  print 'distance of two solutions:', \
-    distances, 'selected:', index
+  print('distance of two solutions:',
+        distances, 'selected:', index)
   return solutions[index]
 
 
@@ -115,7 +117,7 @@ def solve_zyz_euler(rotation):
 class KukaGeometricIK(object):
 
   def __init__(self, dag):
-    self._graph = dag[0].graph
+    self._graph = dag[0].chain
     dh_frames = self._graph.dh_frames
     self._upper_arm = hm_distance(
       dh_frames[3], dh_frames[2])
@@ -156,14 +158,14 @@ class KukaGeometricIK(object):
 
     if len(solutions) == 0:
       # unreachable
-      print 'unreachable eef state'
+      print('unreachable eef state')
       return None
 
     ret = self._graph.forward(solutions[0], return_dh=False)
     err = np.sum(np.round(np.abs(ret[-1][1] - eef), 4))
-    print 'eef validation', err
+    print('eef validation', err)
     duration = time.time() - now
-    print 'time usage:', duration
+    print('time usage:', duration)
 
     if len(solutions) == 1:
       return solutions[0]

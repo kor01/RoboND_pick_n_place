@@ -1,8 +1,20 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import xacro
 import numpy as np
-from definitions import Link
-from definitions import Joint
-from definitions import JointLimits
+from collections import namedtuple
+
+
+JointLimits = namedtuple(
+  'JointLimits', ('effort', 'lower', 'upper', 'velocity'))
+
+Joint = namedtuple(
+  'Joint', ('name', 'position', 'orientation',
+            'axis', 'type', 'parent', 'child', 'limits'))
+
+
+Link = namedtuple('Link', ('name', 'position',
+                           'orientation', 'mass', 'inertia'))
 
 
 def parse_vector(vec):
@@ -134,5 +146,3 @@ class URDFParser(object):
   @property
   def joints(self):
     return self._joints
-
-
