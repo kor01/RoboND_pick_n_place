@@ -1,6 +1,9 @@
 ## Project: Kinematics Pick & Place
 
 [kr_fk]: ./misc_images/dh_frames_assignment.png
+[homogenous]: ./misc_images/individual_homogenous.png
+[geo_ik]: ./misc_images/geometric_ik.png
+[multi_solution]: ./misc_images/multiple_solutions.png
 
 ### Forward Kinematics Overview:
 
@@ -91,9 +94,9 @@ I solved forward kinematics by create a DH parameter table, whose parameters are
 
  * DH Frames are the frames selected for each link
 
- * from DH-Frames we can derive DH-parameter table, which is a compact way to represent serial link structure and perform forward kinematics
+ * from DH-Frames we can derive DH-parameter table, which is a compact parameterization of serial link structure.
 
-* there are two set of rules. The basic rules define the basic requirement for a set of frames to be DH-frame. The advanced rules will favor the frame selection minimizing the number of non-zeros in DH-table.
+* there are two set of rules. The **basic rules** define the basic requirement for a set of frames to be DH-frame. The **advanced rules** will favor the frame selection **minimizing the number of non-zeros** in DH-table.
 
 
 ### Basic Rules for Assigning DH Frames
@@ -167,7 +170,7 @@ following the rules above, DH-Frame is chosen as the following schematic:
 
   * each origin is determined by the common normal between this-z and next-z
 
-  * the absolute representation of each joint axis is already derived above, the numerical value of each x and o can be computed by applying function(in this KR210 case it can also be simply inferred by simple geometry):
+  * the absolute representation of each joint axis is already derived above, the numerical value of each x and o can be computed by applying function:
 
       ``` python
       autofk/geometry.py: 122 common_normal()
@@ -176,7 +179,7 @@ following the rules above, DH-Frame is chosen as the following schematic:
 
 * the result of DH-frame assignment for zero-pose robot
 
-      Frame | o[0] | o[1] | o[2] | x[0] | x[1] | x[2] | z[0] | z[1] | z[2]
+    Frame | o[0] | o[1] | o[2] | x[0] | x[1] | x[2] | z[0] | z[1] | z[2]
     --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
     0 | 0 | 0 | 0.75 | 1 | 0 | 0 | 0 | 0 | 1
     1 | 0 | 1 | 0.75 | 1 | 0 | 0 | 0 | 0 | 1
@@ -186,60 +189,70 @@ following the rules above, DH-Frame is chosen as the following schematic:
     5 | 1.85 | 0 | 1.946 | 0 | 0 | -1 | 0 | 1 | 0
     6 | 1.85 | 0 | 1.946 | 0 | 0 | -1 | 1 | 0 | 0
 
-
-
-
+* the implementation of the above rules can be found in: ```autofk/dh.py 121 assign_dh_frames() ```, will be elaborated later in this writeup.
 
 
 ### DH-Parameter Table Rules:
 
-from the above analysis we can compute the absolute homogeneous matrix of each DH-frame in the robot's zero pose (all joint coordinates = 0). In order to define a function maps joint coordinates to euclidean coordinates it is necessary to infer DH-parameter table from zero-pose frames:
+from the above analysis we can compute the absolute homogeneous matrix of each DH-frame in the robot's zero pose (all joint coordinates = 0).
+
+In order to define a **function maps joint coordinates to euclidean coordinates** it is necessary to infer DH-parameter table from zero-pose frames:
 
   * start from ```1 to N```, each ```row[i]``` of DH-table represents a transform from ```link[i-1] to link[i]``` (links are zero-base indexed, from ```0 to N```)
 
   * ```row[i] = {alpha, a, d, theta}```
 
-  * alpha is the twist angle from ```z[i-1] to z[i]``` w.r.t ```x[i-1]```
+  * ```alpha``` is the twist angle from ```z[i-1] to z[i]``` w.r.t ```x[i-1]```
 
-  * a is the distance from ```z[i-1] to z[i]``` w.r.t ```x[i-1]```
+  * ```a``` is the distance from ```z[i-1] to z[i]``` w.r.t ```x[i-1]```
 
-  * d is the distance from ```x[i-1] to x[i]``` w.r.t ```z[i]```
+  * ```d``` is the distance from ```x[i-1] to x[i]``` w.r.t ```z[i]```
 
-  * theta is the twist angle from ```x[i-1] to x[i]``` w.r.t ```z[i]```
+  * ```theta``` is the twist angle from ```x[i-1] to x[i]``` w.r.t ```z[i]```
 
   * the first two parameters determine ```z[i]``` from previous frame
 
   * the last two parameters determine ```x[i]``` from previous frame
 
-  * either d or theta is symbolic value (determined by joint type), all other quantities are deterministic (determined by the robot's zero pose)
+  * either ```d``` or ```theta``` is symbolic value (determined by joint type), all other quantities are deterministic (determined by the robot's zero pose)
 
   * the initial value of the symbolic part can be determined by zero pose matrices we derived above
 
 
 ### DH-Parameter Table of KR210:
 
+  since all joints in our KR210 are revolute joints, the joint parameter vector is ```[theta1, ... , theta6]```
+
   by the above rule, we first infer the zero-pose value for joints:
 
       Joint | a | alpha | d | theta
         --- | --- | --- | --- | ---
-        1 | 0 | 0 | 0 | 0
-        2 | 0.35 | -pi/2 | 0 | -pi/2
-        3 | 1.25 | 0 | 0 | 0
-        4 | 0.056 | pi/2 | 1.5 | 0
-        5 | 0 | -pi/2 | 0 | 0
-        6 | 0 | pi/2 | 0 | 0
+        1 | 0 | 0 | 0 | ```theta1```
+        2 | 0.35 | -pi/2 | 0 | -pi/2 + ```theta2```
+        3 | 1.25 | 0 | 0 | ```theta3```
+        4 | 0.056 | pi/2 | 1.5 | ```theta4```
+        5 | 0 | -pi/2 | 0 | ```theta5```
+        6 | 0 | pi/2 | 0 | ```theta6```
 
-  this can be obtained by geometric inference from the schematics
+  the implementation of constructing DH-parameter from joint type and initial DH-frame can be found in ```autofk/dh.py:170  infer_dh_parameters() ```, which takes frames obtained in ```assign_dh_frames()``` and return a ```list``` of ```autofk/dh.py:47 DHRow```.
 
-  this can also be obtained by applying function: ```manipulator_graph/line_geometry.py: 13 angle_distance()``` on each consecutive x and z axis obtained in previous table
+  the algorithm to compute initial DH-parameter value is simply applying ```autofk/geometry.py:46 angle_distance()```  which computes the angle and distance between two lines w.r.t a direction.
 
-  since all of the joints are revolute, theta are the variable part of the table
+  * Application on ```last-z``` and ```this-z``` w.r.t ```last-x ``` will derive ```a``` and ```alpha```.
+  * Application on ``` last-x``` and ```this-x``` w.r.t ```this-z``` will derive ```d``` and ```theta```
 
-### Symbolic Homogeneous Transforms
+  once the initial value of the table is obtained, a symbolic structure can be built. implemented in ```autofk/chain.py:60 construct_dh_links()```:
+  * the function constructs a list of ```autofk/link.py:29 DHLink``` which computational workhouse for our forward kinematics inference.
 
-  the symbolic Homogeneous transform from last-frame to this-frame can be obtained by ```intrinsically applying```:
+  * inside each ```DHLink```, a symbolic homogeneous transform is created by its initial DH-table values and joint type.
 
-  * ```translation-x:a```  (translation about x axis, distance=a)
+  * the symbolic matrix is compiled as a Fortran-Python function by ```sympy.utilities.autowrap```, to have optimal inference speed, implemented in ```autofk/link.py:19 compile_homogenous()```
+
+  * once a ```DHLink``` is constructed, it can be used to compute its corresponding homogeneous transform matrix by calling it with a joint state ```mat = link(theta)```
+
+  the code to obtain symbolic transform matrix is implemented in ```autofk/link.py:8 homogeneous_transform()```, which takes ```a, alpha, d, theta``` and create the matrix by **intrinsically applying**:
+
+  * ```translation-x:a```  (translation about x axis, ```distance=a```)
 
   * ``` rotation-x: alpha ```
 
@@ -247,17 +260,39 @@ from the above analysis we can compute the absolute homogeneous matrix of each D
 
   * ```rotation-z: theta ```
 
-  once the DH-parameter table is obtained and the joint type is known, this transform can be **compiled into a function of ```theta or d```**
-
-  ```manipulator_graph/forward_kinematics.py: 6 homogeneous_transform()``` the function use DH-parameter row to construct a symbolic transform matrix
-
-  ``` manipulator_graph/forward_kinematics.py: 17 compile_homogenous() ``` compile the symbolic expression as a Fortran-Python module using sympy's autowrap feature.
-
-
 
 ### Individual Homogeneous Transforms of KR210:
 
-  TBD
+code to obtain symbolic Individual homogeneous transform matrix for each frame:
+
+```python
+
+import sympy as sp
+from autofk.link import homogenous_transform
+
+theta1, theta2, theta3, \
+    theta4, theta5, theta6 = sp.symbols('theta1:7')
+
+dh_table = [[0, 0, 0, theta1],
+            [0.35, -sp.pi/2, 0, -sp.pi/2 + theta2],
+            [1.25, 0, 0, theta3],
+            [0.056, sp.pi/2, 1.5, theta4],
+            [0, -sp.pi/2, 0, theta5],
+            [0, sp.pi/2, 0, theta6]]
+
+matrices = [homogenous_transform(*x) for x in dh_table]
+
+print 'homogenous transform of link 1-3\n'
+sp.pprint((matrices[0], matrices[1], matrices[2]), num_columns=100)
+
+print '\nhomogenous transform of link 4-6\n'
+sp.pprint((matrices[3], matrices[4], matrices[5]), num_columns=100)
+```
+
+the result:
+
+![alt text][homogenous]
+
 
 ### Forward Kinematics Prediction:
 
@@ -271,10 +306,10 @@ the purpose of forward kinematics prediction is to map joint coordinates to eucl
 
 the software implementation of this forward prediction is in:
 
-  * ```manipulator_graph/serial_subgraph.py: 159 SerialSubGraph::forward() ```
+  * ```autofk/chain.py:127 Chain::forward() ```
 
 
-### Forward Kinematics Implementation, Manually Implementation v.s. Automatic Approach:
+### Forward Kinematics Implementation, Manual v.s. Automatic Approach:
 
 To wrap up, as we discussed above, the forward kinematics of a robot can be constructed throw steps:
 
@@ -292,11 +327,11 @@ To wrap up, as we discussed above, the forward kinematics of a robot can be cons
 
   7. compile each symbolic transform functions from  DH-parameter table and joint types
 
-  8. implement a forward kinematics inference function, takes joint states and foot-frame of the robot and sequentially multiplies each transform to obtain numerical value of each DH-frame (and kinematics frame). The eef frame can be obtained by multiplying a fixed homogeneous transform to the last DH-frame
+  8. implement a forward kinematics inference function which takes joint states and foot-frame of the robot and sequentially multiplies each transform to obtain numerical value of each DH-frame (and kinematics frame). The eef frame can be obtained by multiplying a fixed homogeneous transform to the last DH-frame
 
   these steps can be manually implemented case by case, by reading and filling value, performing geometric analysis over schematics, constructing and selecting common normals by experience.
 
-  Manually implementation is educational, but in practice automatically constructing forward kinematics has following advantages:
+  Manual implementation is educational, but in practice automatic approach has following **advantages**:
 
   * it frees us from performing kinematics analysis repeatedly by following the same principles and rules every time.
 
@@ -304,56 +339,60 @@ To wrap up, as we discussed above, the forward kinematics of a robot can be cons
 
   * it enables us to implement automatic inverse kinematics.
 
+  * it scales better to larger and more complicated structure.
+
   In this project **I implemented the automatic forward kinematics inference**:
 
-  1. parsing and extracting information from URDF file:
+  1. parse and extract information from URDF file:
 
-      - implemented in ```manipulator_graph/urdf_parser.py: 121 URDFParser```
+      - implemented in ```autofk/parser.py: 121 URDFParser```
 
-      - parse from URDF file by:
+      - parse from URDF file:
           ``` python
-          from manipulator_graph import URDFParser
+          from autofk.parser import URDFParser
           parser = URDFParser(path='my_good_robot.urdf')
           ```
 
-      - parse from ros parameter server:
+      - parse from ros parameter server and print joint objects:
         ```python
         import rospy
-        from manipulator_graph import URDFParser
+        from autofk.parser import URDFParser
         urdf = rospy.get_param('robot_description')
         parser = URDFParser(data=urdf)
-          ```
-
-      - accessing joint tag readings:
-
-        ``` python
         for joint in parser.joints:
           print joint
-        ```
+          ```
 
   2.  construct forward kinematics:
-
       ```python
-      from manipulator_graph.kinematics_dag import KinematicsDag
-      from manipulator_graph import URDFParser
+      from autofk.dag import KinematicsDag
+      from autofk.parser import URDFParser
       parser = URDFParser(path='my_good_robot.urdf')
       dag = KinematicsDag(parser.joints)
-      graph = dag.root.graph
+
+      # accessing the first chain structure
+      chain = dag.first.chain
       ```
-  3. forward kinematics inference:
+  3. forward kinematics inference with chain structure and broadcast to ros tf:
 
       ```python
-      from manipulator_graph.kinematics_dag import KinematicsDag
-      from manipulator_graph import URDFParser
+      from autofk.dag import KinematicsDag
+      from autofk.parser import URDFParser
       import tf # to broadcast DH-frames
 
       br = tf.TransformBroadcaster()
 
-      base_name, _ = graph.dh_base_link
+      urdf = rospy.get_param('robot_description')
+      parser = URDFParser(data=urdf)
+      chain = parser.first.chain
+
       joint_states = ... # whatever joint states from ros
 
       # return a tuple of (link_name, frame_matrix) of each link
-      frames = graph.forward(joint_states, return_dh=True)
+      frames = chain.forward(joint_states, return_dh=True)
+
+      # get the base_link name to publish
+      base_name, _ = chain.dh_base_link
 
       # iterate through frames an publish to tf
       for link_name, frame_value in frames:
@@ -372,174 +411,163 @@ To wrap up, as we discussed above, the forward kinematics of a robot can be cons
 
           - each node in the DAG represents a linear chain of joints, i.e. a consecutive serial connected joints
           - node ```a and b``` are connected iff a's last link is the parent of b's first link
-          - nodes in DAG are rigidly connected (i.e. by a fixed joint)
-          - the partition into DAG is implemented in ```manipulator_graph/kinematics_dag.py: partition_as_serial_dag()```
-      2. each serial part
+          - the partition into DAG is implemented in ```autofk/adg.py: partition_as_serial_dag()```
+          - in the case of kr210, the dag consists of three nodes: ```the entire robot arm```, ```left_gripper_finger```, and ```right_gripper_finger```.
 
+      2. each serial structure has its own forward kinematics, represented by a ```autofk/chain.py:116 Chain``` class. The chain class perform DH frame and parameter inference task.
 
-### Inverse Kinematics Terminology:
 
-  * waist is referred to as the first joint, since it controls the x-y-planar rotation of the robot list human waist
+### Geometric Inverse Kinematics:
 
-  * shoulder and elbow are referred to as the second and third joints for the same anthropic reason above
+  * after the construction of forward kinematics, we need an inverse function maps euclidean space trajectory plan to joint state actions.
 
-  * wrist is referred to as the collection of the last three joints, since it controls the orientation of the end effector like human wrist
+  * the overall strategy to create such inverse function is kinematics decoupling:
 
-  * wrist center is referred to as the intersection of the three wrist axis
+      * the first three joints are responsible for correctly positioning the wrist center.
 
+      * the last three joints are responsible for the orientation of the eef.
 
-### Inverse Kinematics Analysis:
+  * we define a set of terminology:
 
-  * over all strategy
+    - ```waist```: first joint, since it controls the x-y-planar rotation of the robot list human waist
 
-  * infer the last DH-frame position and orientation from eef
+    - ```shoulder and elbow```: second and third joints, for the same anthropic reason above
 
-  * infer the wrist joint states from the last DH-frame
+    - ```wrist```: the collection of the last three joints, since it controls the orientation of the end effector like human wrist
 
-  * infer the wrist center location from the last DH-frame
+    - ```wrist center```: the intersection of last three joint axis
 
-  * infer the waist joint state from the wrist center
+    - ```H_A_B```: the homogeneous matrix of frame B described in frame A. ```A=0``` means frame described in world-frame (```base_footprint```)
 
-  * infer the shoulder and elbow angle by combining the waist state and wrist center
 
+### Compute Wrist Center Position:
 
-### Forward Kinematics Implementation
+  to obtain joint states from euclidean coordinate of eef, we first obtain the required position of the wrist center:
 
-1. Generic automatic DH parameter table inference from URDF file
+  * ```H_6_E```: is defined as the matrix of eef frame described in link-6's DH frame, obtained by forward kinematics above.
 
-2. Generic forward kinematics inference
+  * ```H_6_E``` is a fixed 4x4 matrix since eef is fixed w.r.t link-6.
 
-2. Geometric inverse kinematics for kr210 kuka arm
+  * ```H_0_E``` is the input to our problem.
 
+  * therefore: ```H_0_6 = np.matmul(H_0_E, np.linalg.inv(H_6_E))``` as implemented in ```kuka_kinematics/geometric_ik.py:138 infer_joints()```
 
-### Inverse Kinematics Implementation
+  * extract wrist center position: ```wc_pos = H_0_6[:3, 3]```, implemented in ```kuka_kinematics/geometric_ik.py:139 infer_joints()```
 
----
 
-### Experiments
+### Solve Waist:
 
-  * forward kinematics debug and validation
+  * in the zero-pose arm, origins ```O1, O2, O3, O4(wrist center)``` are in the same plane, we call it ```plane-2```: the plane pass through ```O2``` and perpendicular to ```z2```
 
+  * the rotation w.r.t ```z2, z3``` will preserve this property, since these two rotation axis are perpendicular to ```plane-2```
 
-  * inverse kinematics server pick and place
+  * therefore we can completely determine the joint state of waist by projecting wrist center to ```x-y-plane``` of the world-frame.
 
+  * hence ```waist_state =  np.arctan2(wc_pos[1], wc_pos[0]) ``` implemented in ```kuka_kinematics/geometric_ik.py: 140```
 
-### Run the project:
 
+### Solve Shoulder:
 
-1. install project dependency: pip install gflags
-2. Set up your ROS Workspace.
-3. Download or clone the [project repository](https://github.com/udacity/RoboND-Kinematics-Project) into the ***src*** directory of your ROS Workspace.  
-4. copy kuka_kinematics, manipulator_graph, and ks_runner.sh to kuka_arm/script directory
-5. roscd kuka_arm/script; sh target_spawn.py to start environment
-6. sh ks_runner.sh to start kinematics server
+  * once the waist state is known, we next proceed to solve shoulder and elbow state.
 
+  ![alt text][geo_ik]
 
-[//]: # (Image References)
+  * to perform numerical analysis, first compute the coordinate of wrist center described in in ```plane-2```, this is implemented in ```kuka_kinematics/geometric_ik.py:177 infer_shoulder()```.
 
-[image1]: ./misc_images/dh_simple.png
-[image2]: ./misc_images/dh_all.png
-[rviz_grip]: ./misc_images/rviz_grip.png
-[gazebo_grip]: ./misc_images/gazebo_grip.png
-[ks_log]: ./misc_images/ks_log.png
+  * perform a partial forward kinematics inference to compute  ```frame-2``` from the results we obtained in last section.
 
----
+  * describe the wrist center in ```frame-2``` by left multiplying with the inverse(transpose) of ```frame-2```'s rotation matrix followed by a translation of negative ```o1-o2``` vector. The new coordinate is denoted as ```new_wc```
 
-### [Rubric](https://review.udacity.com/#!/rubrics/972/view) Points
+  * we can now solve angle ```phi-1``` by ```phi_1 = arctan2(new_wc_y, new_wc_x)``` as implemented in ```kuka_kinematics/geometric_ik.py:184```
 
+  * two important geometric quantities need to be obtained, the ```upper-arm-length``` and the ```lower-arm-length```. The computation is implemented in ```kuka_kinematics/geometric_ik.py:117 KukaGeometricIK::__init__()```
 
-### Kinematic Analysis
+  * we can now solve ```phi-2``` by triangular equation:
 
+    ```
+    lower_arm**2 = upper_arm**2 + o2_wc**2 - 2cos(phi2)(upper_arm * o2_wc)
+     ```
 
-#### DH Parameter and DH Frame Inference:
+    as implemented in ```kuka_kinematics/geometric_ik.py:61```
 
- 1. I have implemented a generic package automatically infer the DH
- frame assignment and DH parameter directly from URDF files
+  * the shoulder state ```phi-5``` can be readily obtained by ```phi5 = pi/2 - (phi2 + phi1)```
 
- 2. jupyter notebook of DH parameters and DH frames inference from URDF file
 
-#### Forward Kinematics:
+### Multiple Solutions in Solving Shoulder:
 
- 1. I also have implemented a generic forward kinematics package
+  * there are two solutions for shoulder state (by first ignoring joint constraint), as illustrated in in the schematics:
 
- 2. using the analysis from the first package and build automatic forward kinematics
+  ![alt text][multi_solution]
 
- 3. the package can infer both the DH frames of each link and the URDF frames of each link
+  * the strategy to attack this problem is:
 
- 4. the package provides convenient API to aid inverse kinematics implementation
+      - compute all possible solutions.
+      - filter the solution set by joint limit.
+      - select solution that has least cumulative circular distance in joint space. (there could be a better criteria by weighting the joints, but we'll live with this one)
 
- 5. the package uses sympy autowrap to speed up inference computation
+  * the implementation: ```kuka_kinematics/geometric_ik.py:185-189 infer_shoulder()``` and ```kuka_kinematics/geometric_ik.py:141-144 infer_joints()```.
 
- 6. the package automatically check joint limit (throw exception if unreachable)
 
+### Solve Elbow:
 
-7.  the DH parameter obtained from automatic inference:
+  * we first perform a partial forward kinematics inference with the knowledge of waist and shoulder state we obtained so far and set the elbow state to zero.
 
-    Joint | a | alpha | d | theta
-    --- | --- | --- | --- | ---
-    1 | 0 | 0 | 0 | 0
-    2 | 0.35 | 1.5707963 | 0.0 | -1.570796
-    3 | 1.25 | 0 | 0 | 3.141592
-    4 | 0.54 | 1.5707963 | 1.5 | 3.1415926
-    5 | 0 | 1.5707963 | 0 | 3.1415926
-    6 | 0 | 1.5707963 | 0 | 0
+  * the return value contains coordinate of ```O4``` if elbow state is zero, denoted as ```O4Zero```. It also contains coordinate of ```O3``` and ```Z3```.
 
-    as illustrated in notebook/kinematics_dag.ipnb
+  * we now compute the twist angle between vectors ```O3-O4Zero``` and ```O3-wc``` w.r.t ```Z3```.
 
+  * the implementation: ```kuka_kinematics/geometric_ik.py:191 infer_elbow()```
 
-#### Inverse Kinematics:
 
- 1. inverse kinematics implementation is not generic and is specific to KR210 arm
+### Forward Kinematics Experiments:
 
- 2. the geometric method:
+  To validate the correctness of our implementation of ```autofk```, the first experiment is to broadcast the DH-frame obtained in ```tf```, and check:
 
-     a. convert the EEF frame in query into target DHFrame of gripper link
+  1. if the frame is correctly attached to each link, as the robot moves.
 
-     b. use the EEF frame Z axis and wrist center offset to infer the wrist center location
+  2. if the frame satisfies the DH-rules we obtained in previous sections.
 
-     c. use wrist center location to solve the waist joint angle
+  start ```ros``` and ```gazebo``` environment, load our kr210:
+  ```bash
+  $
+  ```
 
-     d. use the waist location combined with wrist location to solve elbow and
-     shoulder angle by trigonometric equations
+  start broadcast to ```tf``` the DH-frames:
 
-     e. choose valid solution by joint limit
+  ```bash
+  $
+  ```
 
+  snapshots:
 
-#### Experiment:
+  as we can see, the correctness of forward kinematics is validated.
 
-  1. the correctness of forward kinematics is validated by broadcast DH frames
-  derived from joint states by TF, and validate in RViz, as illustrated by:
 
-      validate DH frames under different joint angle configuration
 
-      execute command: ***python -m kuka_kinematics***
+### Inverse Kinematics Experiments:
 
-      to broadcast DH frames using TF
+  we use the pick-n-place task to validate our geometric_ik implementation:
 
+  start ros and pick-n-place task:
 
-      dh parameter validation using TF and Rviz
-  ![alt text][image1]
+  ```bash
+  $
+  ```
 
+  start our IK-server:
 
-      all dh frames broadcast into Rviz
-  ![alt text][image2]
+  ```bash
+  %
+  ```
 
 
-  2. the correctness of inverse kinematics in validated by gripping task execution;
-  the planned trajectory is correctly executed without any observable error
 
-      run kinematics server by steps in ***run the project*** section
+### Future Improvements:
 
+  * more joint type support should be added to ```autofk```
 
-    rviz view
+  * velocity kinematics and dynamics support should be added to ```autofk```
 
-  ![grip in rviz][rviz_grip]
+  * the ```autoik``` is under development, using neural nets and reinforcement learning to generate IK solutions for any structure generated by ```autofk```
 
-
-    gazebo view
-
-  ![grip in gazebo][gazebo_grip]
-
-    kinematics server log, trajectory error, solution selection and execution time
-
-  ![kinematics server log][ks_log]
+  * richer test bed for ```autofk``` and ```autoik```, more tasks and robot models.
