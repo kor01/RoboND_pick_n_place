@@ -10,18 +10,6 @@
 [9_grasp]: ./misc_images/9_grasp.png
 [one_failure]: ./misc_images/one_failure.png
 
-### Forward Kinematics Overview:
-
-I solved forward kinematics by create a DH parameter table, whose parameters are converted from readings in URDF file
-
-  * read relative joint position orientation and direction from URDF
-
-  * construct absolute position orientation of each link's kinematics frame (absolute means represented in base_link frame)
-
-  * compute the absolute representation of each joint axis
-
-  * construct DH parameter table by DH frames constructed above
-
 
 ###  Read Joint Information from URDF:
 
