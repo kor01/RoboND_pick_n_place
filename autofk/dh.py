@@ -128,7 +128,7 @@ def assign_dh_frames(joints):
   :return: DHFrames of the linkage system
   """
   last_x = infer_initial_frame(joints)
-  ret = [ReferenceFrame(z=joints[0].k, x=last_x.k, o=last_x.k)]
+  ret = [ReferenceFrame(z=joints[0].k, x=last_x.k, o=last_x.p)]
 
   for i in range(len(joints) - 1):
     this_z = joints[i]

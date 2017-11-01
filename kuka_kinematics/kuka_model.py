@@ -105,8 +105,7 @@ class KukaModel(object):
 
     for link in self._graph.dh_links:
       link_name = link.link
-      p, q = rot_to_quaternion(
-        np.linalg.inv(link.rel))
+      p, q = rot_to_quaternion(np.linalg.inv(link.rel))
       self._rel_rots[link_name] = \
         ('dh-' + link_name, p, q)
 
@@ -128,6 +127,7 @@ class KukaModel(object):
       states = create_state_dict(joint_state)
       self.save_joint_state(states)
       frames = self._graph.forward(states)
+
       for k, f in frames:
         p, q = rot_to_quaternion(f)
         dh_k = 'dh-' + k
