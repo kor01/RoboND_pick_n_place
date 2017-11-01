@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e9de8ee-e072-4cca-8031-0253112523b1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/misc_images/dh_frames_assignment.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/misc_images/geometric_ik.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/misc_images/individual_homogenous.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/misc_images/kr210_fk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/misc_images/multiple_solutions.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autofk/test_link.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/writeup.md" afterPath="$PROJECT_DIR$/writeup.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -76,7 +69,7 @@
       <file leaf-file-name="geometric_ik.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kuka_kinematics/geometric_ik.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
+            <state relative-caret-position="-200">
               <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -859,7 +852,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kuka_kinematics/geometric_ik.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
+        <state relative-caret-position="-200">
           <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
