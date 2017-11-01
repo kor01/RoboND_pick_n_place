@@ -230,14 +230,14 @@ In order to define a **function maps joint coordinates to euclidean coordinates*
 
   by the above rule, we first infer the zero-pose value for joints:
 
-    Joint | a | alpha | d | theta
-    --- | --- | --- | --- | ---
-    1 | 0 | 0 | 0 | ```theta1```
-    2 | 0.35 | -pi/2 | 0 | -pi/2 + ```theta2```
-    3 | 1.25 | 0 | 0 | ```theta3```
-    4 | 0.056 | pi/2 | 1.5 | ```theta4```
-    5 | 0 | -pi/2 | 0 | ```theta5```
-    6 | 0 | pi/2 | 0 | ```theta6```
+  Joint | a | alpha | d | theta
+  --- | --- | --- | --- | ---
+  1 | 0 | 0 | 0 | ```theta1```
+  2 | 0.35 | -pi/2 | 0 | -pi/2 + ```theta2```
+  3 | 1.25 | 0 | 0 | ```theta3```
+  4 | 0.056 | pi/2 | 1.5 | ```theta4```
+  5 | 0 | -pi/2 | 0 | ```theta5```
+  6 | 0 | pi/2 | 0 | ```theta6```
 
   the implementation of constructing DH-parameter from joint type and initial DH-frame can be found in ```autofk/dh.py:170  infer_dh_parameters() ```, which takes frames obtained in ```assign_dh_frames()``` and return a ```list``` of ```autofk/dh.py:47 DHRow```.
 
