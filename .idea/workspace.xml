@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/kuka_kinematics/geometric_ik.py" line="113" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e9de8ee-e072-4cca-8031-0253112523b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/writeup.md" afterPath="$PROJECT_DIR$/writeup.md" />
-    </list>
+    <list default="true" id="5e9de8ee-e072-4cca-8031-0253112523b1" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />

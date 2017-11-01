@@ -74,15 +74,15 @@ I solved forward kinematics by create a DH parameter table, whose parameters are
 
   * KR210's zero-pose absolute kinematics frames (homogeneous transform matrix converted to xyz-rpy representation for compact display):
 
-  Link | x | y | z | r | p | y | dx | dy | dz
-  --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
-  0 | 0 | 0 | 0 | 0 | 0 | 0 | N/A | N/A | N/A
-  1 | 0 | 0 | 0.33 | 0 | 0 | 0 | 0 | 0 | 1
-  2 | 0.35 | 0 | 0.75 | 0 | 0 | 0 | 0 | 1 | 0
-  3 | 0.35 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 0
-  4 | 1.31 | 0 | 1.946 | 0 | 0 | 0 | 1 | 0 | 0
-  5 | 1.85 | 0 | 1.946 | 0 | 0 | 0 | 0 | 1 | 0
-  6 | 2.153 | 0 | 1.946 | 0 | 0 | 0 | 1 | 0 | 0
+    Link | x | y | z | r | p | y | dx | dy | dz
+    --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
+    0 | 0 | 0 | 0 | 0 | 0 | 0 | N/A | N/A | N/A
+    1 | 0 | 0 | 0.33 | 0 | 0 | 0 | 0 | 0 | 1
+    2 | 0.35 | 0 | 0.75 | 0 | 0 | 0 | 0 | 1 | 0
+    3 | 0.35 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 0
+    4 | 1.31 | 0 | 1.946 | 0 | 0 | 0 | 1 | 0 | 0
+    5 | 1.85 | 0 | 1.946 | 0 | 0 | 0 | 0 | 1 | 0
+    6 | 2.153 | 0 | 1.946 | 0 | 0 | 0 | 1 | 0 | 0
 
   * we notice that the above table can be obtained by simply sequentially add up each row's xyz in the original table.
 
