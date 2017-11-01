@@ -96,12 +96,13 @@ def hm_distance(hm1, hm2):
 def solve_zyz_euler(rotation):
   q2 = np.arccos(rotation[2, 2])
   # singular case
-  if abs(q2) < ZERO_TOLERANCE:
+
+  if np.isclose(q2, 0):
     # set q3 to zero
     q3, q1 = 0, np.arctan2(
       rotation[1, 0], rotation[0, 0])
     return (q1, q2, q3), EulerState.POS_SINGULAR
-  elif abs(q2 - np.pi) < ZERO_TOLERANCE:
+  elif np.isclose(q2, np.pi):
     q3, q1 = 0, np.arctan2(
       -rotation[1, 0], -rotation[0, 0])
     return (q1, q2, q3), EulerState.NEG_SINGULAR
