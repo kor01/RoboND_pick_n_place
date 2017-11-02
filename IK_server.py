@@ -1,7 +1,10 @@
+#!/usr/bin/env python
+
 import sys
 import os
 
 DIR_NAME = os.path.dirname(__file__)
+DIR_NAME = os.path.realpath(DIR_NAME)
 sys.path.append(DIR_NAME)
 
 import rospy
